@@ -1,0 +1,15 @@
+,Unnamed: 0,file_name,label,start,end,annotators,implicit_annotators,text
+0,37,1,ASP-FOR-MI,9929,9936,"4,1","4,1",aspirin
+0,38,1,ASP-FOR-MI,15767,15814,1,1,Chest Pain Cath VF arrest RCA stenting
+0,39,1,ASP-FOR-MI,16404,16407,"1,4","1,4",ASA
+0,40,1,ASP-FOR-MI,16988,16991,"1,4","1,4",ASA
+0,41,1,ASP-FOR-MI,17264,17267,"1,4","1,4",ASA
+0,42,1,ASP-FOR-MI,17475,17478,"1,4","1,4",ASA
+0,43,1,ASP-FOR-MI,18444,18447,"1,4","1,4",ASA
+0,4041,2,ABDOMINAL,1177,1190,4,4,AAA repair x2
+0,4042,2,ABDOMINAL,6038,6051,4,4,AAA repair x2
+0,4043,2,ABDOMINAL,11625,11640,"4,3","4,3",Status post AAA
+0,4044,2,ABDOMINAL,13728,13778,3,"3,4",s/p left thoracoabdominal esophagectomy (12/01/69)
+0,4045,2,ABDOMINAL,14430,14444,"4,3","4,3",AAA repair x 2
+0,4046,2,ABDOMINAL,15582,15617,4,"3,4",left thoracoabdominal esophagectomy
+0,4047,2,ABDOMINAL,16272,16282,4,"4,3",AAA repair
