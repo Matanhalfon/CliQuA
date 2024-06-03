@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PatientMatching>
+<TEXT><![CDATA[
+
+Record date: 2024-06-01
+*** aspirin
+*** Chest Pain Cath VF arrest RCA stenting
+*** ASA
+*** ASA
+*** ASA
+*** ASA
+*** ASA
+]]></TEXT>
+<TAGS>
+<ABDOMINAL met="not met" />
+<ADVANCED-CAD met="met" />
+<ALCOHOL-ABUSE met="not met" />
+<ASP-FOR-MI met="met" />
+<CREATININE met="not met" />
+<DIETSUPP-2MOS met="met" />
+<DRUG-ABUSE met="not met" />
+<ENGLISH met="met" />
+<HBA1C met="not met" />
+<KETO-1YR met="not met" />
+<MAJOR-DIABETES met="met" />
+<MAKES-DECISIONS met="met" />
+<MI-6MOS met="met" />
+</TAGS>
+</PatientMatching>
