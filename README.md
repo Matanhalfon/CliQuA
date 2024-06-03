@@ -17,8 +17,8 @@ Run
 
 * Generate evaluation data for CliQuA evaluation pipeline.
 Example usage:
-```
-$ python preprocess_input.py  -context_dir "test_data/n2c2_context_dir" \
+``` 
+    $ python preprocess_input.py  -context_dir "test_data/n2c2_context_dir" \
     -ground_truth_file "test_data/ground_truth_cliqua.csv" \
     -output_file "test_data/inference_input_file.json"
 ```
@@ -29,6 +29,6 @@ data above and logs parsed inference output in addition to running the CliQuA
 evaluation.
 Example usage:
 ```
-$ python evaluation_flow.py  -input_annotated_samples_file "test_data/inference_input_file.json" \
+    $ python evaluation_flow.py  -input_annotated_samples_file "test_data/inference_input_file.json" \
     -output_annotated_samples_file "test_data/inference_output_file.json"
 ```
