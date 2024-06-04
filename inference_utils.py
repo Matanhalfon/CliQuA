@@ -1,6 +1,6 @@
 """This module contains classes for API interaction with language model inference."""
 from typing import Protocol
-from transformers import AutoTokenizer, AutoModelForCausalLM
+
 
 class LLMInference(Protocol):
 
