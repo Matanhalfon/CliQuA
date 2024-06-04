@@ -26,7 +26,7 @@ Example usage:
 * To change LLM_inference see template in `inference_utils.py`
 *  Run evaluation flow, which creates prompts based on the preprocessed
 data above and logs parsed inference output in addition to running the CliQuA
-evaluation.
+evaluation. Alter `run_llm` arguments to use another llm.
 Example usage:
 ```
     $ python evaluation_flow.py  -input_annotated_samples_file "test_data/inference_input_file.json" \

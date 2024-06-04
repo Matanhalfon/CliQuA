@@ -94,6 +94,8 @@ class AnnotatedSample:
 
     @classmethod
     def from_dict(cls, data):
+        if 'file_name' not in data:
+            data['file_name']=int(data['sample_id'].split("_")[0])
         annotated_passages_data = data.pop('annotated_passages', [])
         annotated_passages = [
             AnnotatedPassage.from_dict(item) for item in annotated_passages_data
