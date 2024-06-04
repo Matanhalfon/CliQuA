@@ -1,6 +1,6 @@
 """This module contains classes for API interaction with language model inference."""
 from typing import Protocol
-from transformers import AutoTokenizer, AutoModelForCausalLM
+
 
 class LLMInference(Protocol):
 
@@ -13,8 +13,8 @@ class LLMInference(Protocol):
         Returns:
             List of generated texts.
         """
-
-
+    
+    
 class HFInference:
     """Hugging Face model inference class for language models.
     
@@ -47,3 +47,4 @@ class HFInference:
             outputs.extend([self.tokenizer.decode(output, skip_special_tokens=True) for output in model_output])
 
         return outputs
+

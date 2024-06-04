@@ -14,7 +14,6 @@ import numpy as np
 
 from annotated_sample import AnnotatedSample
 import evaluation_utils as eu
-import inference_utils
 
 
 SPITTERS = ['[...]','...']
@@ -62,8 +61,26 @@ def generate_prompt(annotated_sample: AnnotatedSample):
     return prompt
 
 
-def run_llm(prompts: list[str], model: inference_utils.LLMInference) -> list[str]:
-    return model.inference(prompts)
+def run_llm(prompts: list[str]) -> list[str]:
+    # MOCK
+    valid_positive_json = """json
+            {
+                "rationale" : "match.",
+                "quote" : "ASA",
+                "is_met" : true
+            }"""
+    invalid_positive_json = "'quote': 'asa', 'is_met':'true'"
+    # valid_negative_json = """json
+    #         {
+    #             "rationale" : "no match.",
+    #             "quote" : "",
+    #             "is_met" : false
+    #         }"""
+    #invalid_negative_json = "'quote': 'asa', 'is_met':'false'"
+
+    raw_answers = [valid_positive_json, invalid_positive_json]
+                  # valid_negative_json, invalid_negative_json]
+    return [ raw_answers[i % len(raw_answers)]  for i in range(len(prompts))]
 
 
 def normalize_raw_answer(raw_answer: str) -> str:
@@ -237,8 +254,7 @@ def main(input_annotated_samples_file:str, output_annotated_samples_file:str
     prompts = [generate_prompt(sample) for sample in annotated_samples]
 
     # Run LLM over prompts.
-    model = inference_utils.HFInference("google/gemma-2b")
-    raw_answers = run_llm(prompts, model)
+    raw_answers = run_llm(prompts)
 
     # Parse LLM answers and populate into annotated samples.
     annotaed_samples_with_model = parse_llm_answers(raw_answers, annotated_samples)
