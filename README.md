@@ -19,7 +19,7 @@ Run
 Example usage:
 ``` 
     $ python preprocess_input.py  -context_dir "test_data/n2c2_context_dir" \
-    -ground_truth_file "test_data/ground_truth_cliqua.csv" \
+    -ground_truth_file "test_data/ground_truth_cliqua.csv" \§
     -output_file "test_data/inference_input_file.json"
 ```
 
