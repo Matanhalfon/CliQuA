@@ -36,14 +36,25 @@ class HFInference:
     def inference(
         self,
         texts: list[str],
-        max_length: int = 500,
+        max_length: int = 256,
+        top_p: float = 0.95,
+        top_k: int = 1,
+        temperature: float = 0.,
+        do_sample: bool = False,
         batch_size: int = 16,
         ) -> list[str]:
         batches = [texts[i:i + batch_size] for i in range(0, len(texts), batch_size)]
         outputs = []
         for batch in batches:
             input_ids = self.tokenizer(batch, return_tensors="pt")
-            model_output = self.model.generate(**input_ids, max_length=max_length)
+            model_output = self.model.generate(
+                **input_ids,
+                max_length=max_length,
+                top_p=top_p,
+                top_k=top_k,
+                temperature=temperature,
+                do_sample=do_sample,
+                )
             outputs.extend([self.tokenizer.decode(output, skip_special_tokens=True) for output in model_output])
 
         return outputs
