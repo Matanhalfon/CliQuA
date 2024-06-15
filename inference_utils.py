@@ -21,7 +21,13 @@ class HFInference:
       ```python
     model_name = "google/gemma-2b"
     hf_model = HFInference(model_name)
-    outputs = hf_model.inference(["Write me a poem about Machine Learning."])
+    outputs = hf_model.inference(
+        texts=["Write me a poem about Machine Learning."],
+        max_length=256,
+        top_p=0.95,
+        top_k=1,
+        temperature=0.,
+    )
     ```
     """
     def __init__(self, model_name: str):
