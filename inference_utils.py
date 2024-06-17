@@ -41,26 +41,31 @@ class HFInference:
 
     def inference(
         self,
-        texts: list[str],
-        max_length: int = 256,
+        prompts: list[str],
+        max_new_tokens: int = 1000,
         top_p: float = 0.95,
         top_k: int = 1,
         temperature: float = 0.,
         do_sample: bool = False,
-        batch_size: int = 16,
         ) -> list[str]:
-        batches = [texts[i:i + batch_size] for i in range(0, len(texts), batch_size)]
         outputs = []
-        for batch in batches:
-            input_ids = self.tokenizer(batch, return_tensors="pt")
+        for prompt in prompts:
+            user_entry = dict(role="user", content=prompt)
+            input_ids = self.tokenizer.apply_chat_template([user_entry], return_tensors="pt")
             model_output = self.model.generate(
-                **input_ids,
-                max_length=max_length,
+                input_ids,
+                max_new_tokens=max_new_tokens,
                 top_p=top_p,
                 top_k=top_k,
                 temperature=temperature,
                 do_sample=do_sample,
                 )
-            outputs.extend([self.tokenizer.decode(output, skip_special_tokens=True) for output in model_output])
+            
+            # Trim the output from the input, the model returns both prompt and response.
+            response_sequences = [
+            model_output[j][input_ids.shape[1] :]
+            for j in range(len(model_output))
+        ]
+            outputs.extend([self.tokenizer.decode(output, skip_special_tokens=True) for output in response_sequences])
 
         return outputs

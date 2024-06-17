@@ -237,7 +237,7 @@ def main(input_annotated_samples_file:str, output_annotated_samples_file:str
     prompts = [generate_prompt(sample) for sample in annotated_samples]
 
     # Run LLM over prompts.
-    model = inference_utils.HFInference("google/gemma-2b")
+    model = inference_utils.HFInference("google/gemma-2b-it")
     raw_answers = run_llm(prompts, model)
 
     # Parse LLM answers and populate into annotated samples.

@@ -101,24 +101,28 @@ def main(context_dir:str, ground_truth_file: str, output_file: str):
     
     # Combine components into AnnotatedSamples.
     annotated_samples = []
+    skipped=0
     for label in labels2questions:
         for patient in patient2records:
             ground_truth_attributions = []
-            if label in patient2annotations[patient]:
-                ground_truth_attributions = patient2annotations[patient][label]
-            annotated_passage = AnnotatedPassage(
-                0, patient2records[patient],
-                ground_truth_attributions, None)
-            annotated_sample = AnnotatedSample(
-                f"{patient}_{label}",patient, labels2questions[label],
-                len(ground_truth_attributions) > 0,
-                [annotated_passage])
-            annotated_samples.append(annotated_sample)
-    
+            if patient in patient2annotations.keys():
+                if label in patient2annotations[patient]:
+                    ground_truth_attributions = patient2annotations[patient][label]
+                annotated_passage = AnnotatedPassage(
+                    0, patient2records[patient],
+                    ground_truth_attributions, None)
+                annotated_sample = AnnotatedSample(
+                    f"{patient}_{label}",patient, labels2questions[label],
+                    len(ground_truth_attributions) > 0,
+                    [annotated_passage])
+                annotated_samples.append(annotated_sample)
+            else:
+                skipped+=1
     # Write annotated samples to file. 
     annotated_samples_json = {'data': [
         sample.to_dict() for sample in annotated_samples]}
     print(f"Writing joint AnnotatedSamples out to {output_file}")
+    print(f"Skipped {skipped} patieants")
     with open(output_file, 'w') as f:
         json.dump(annotated_samples_json, f)
 
